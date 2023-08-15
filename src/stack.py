@@ -7,7 +7,8 @@ class Node:
 
         :param data: данные, которые будут храниться в узле
         """
-        pass
+        self.data = data
+        self.next_node = next_node
 
 
 class Stack:
@@ -15,7 +16,9 @@ class Stack:
 
     def __init__(self):
         """Конструктор класса Stack"""
-        pass
+        self.stack_list = []
+        self.top = None
+        self.size = 0
 
     def push(self, data):
         """
@@ -23,7 +26,12 @@ class Stack:
 
         :param data: данные, которые будут добавлены на вершину стека
         """
-        pass
+        new_node = Node(data, self.top)
+        # if self.top:
+        #     new_node.next_node = self.top
+        self.top = new_node
+        self.stack_list.append(new_node)
+        self.size += 1
 
     def pop(self):
         """
@@ -31,4 +39,14 @@ class Stack:
 
         :return: данные удаленного элемента
         """
-        pass
+        self.top = self.top.next_node
+        last_del = self.stack_list.pop()
+        self.size -= 1
+        return last_del.data
+
+    def __str__(self):
+        """Магический метод для строкового представления объекта"""
+        data_list = []
+        for item in self.stack_list:
+            data_list.append(item.data)
+        return "\n".join(data_list)
