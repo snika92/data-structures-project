@@ -41,7 +41,12 @@ class Queue:
 
         :return: данные удаленного элемента
         """
-        pass
+        if len(self.queue) > 0:
+            first_del = self.queue.pop(0).data
+        else:
+            first_del = None
+        self.size -= 1
+        return first_del
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
